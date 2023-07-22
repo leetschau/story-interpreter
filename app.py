@@ -6,8 +6,11 @@ from jamdict import Jamdict
 from pathlib import Path
 import pickle
 
+from header import qmd_header
+
 inp = Path(sys.argv[1])
 kwp = Path('./known-words.txt')
+header = qmd_header(inp.stem)
 
 assert inp.suffix == '.mp3', 'only MP3 file is accepted!'
 if kwp.is_file():
@@ -19,7 +22,6 @@ else:
 print(f'Known words: {known_words}')
 
 linesep = '\n\n'
-header = open('header.qmd').read()
 jam = Jamdict()
 cache = inp.with_suffix('.pkl')
 
@@ -54,8 +56,6 @@ for si, sentence in enumerate(tres['transcript']['segments']):
             exp = "\n".join([ent.text() for ent in jam.lookup(word).entries])
             vocab[word] = f'{words.postags[idx]}, {exp}'
             bw.append(f'{word} [^{word}]')
-    # bw.append(f'[^sent{si}]')
-    # vocab[f'sent{si}'] = tres['translation']['segments'][si]['text']
     lines.append(' '.join(bw))
 
 translationstr = linesep.join([line['text'] for line in tres['translation']['segments']])

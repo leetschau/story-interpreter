@@ -4,3 +4,4 @@
 *.html
 *.pkl
 .venv/
+__pycache__/
