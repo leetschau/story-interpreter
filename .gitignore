@@ -1,0 +1,6 @@
+*.qmd
+*.mp3
+*.epub
+*.html
+*.pkl
+.venv/
