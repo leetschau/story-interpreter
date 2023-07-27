@@ -1,7 +1,6 @@
 import sys
 import whisper
 import nagisa
-import pykakasi
 from jamdict import Jamdict
 from pathlib import Path
 import pickle
@@ -9,7 +8,7 @@ import pickle
 from header import qmd_header
 
 inp = Path(sys.argv[1])
-kwp = Path('./known-words.txt')
+kwp = Path.home() / '.config/story-interpreter/known-words.txt'
 header = qmd_header(inp.stem)
 
 assert inp.suffix == '.mp3', 'only MP3 file is accepted!'
